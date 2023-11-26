@@ -1,1 +1,3 @@
+- routine for philosophers -> eat, sleep, etc.
+- main that starts all the threads and supervises behaviour
 - 
