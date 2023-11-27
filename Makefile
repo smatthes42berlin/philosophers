@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/11/12 15:44:47 by smatthes         ###   ########.fr        #
+#    Updated: 2023/11/27 17:12:14 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,11 @@
 # -I Flag adds path where header files are searched during preprocessing
 SHELL:=/bin/bash
 CFLAGS = -Wall -Wextra -Werror $(INCLUDEFLAGS) 
-NAME = pipex
+NAME = philo
 LINK= cc
 CC = cc
 
-NAMELIBFT = libft.a
-FOLDERLIBFT = ./libft/
-PATHLIBFT = $(FOLDERLIBFT)$(NAMELIBFT)
-
-INCLUDEPATH = ./include/ ./libft/include/
+INCLUDEPATH = ./include/
 INCLUDEFLAGS = $(patsubst %,-I% ,$(INCLUDEPATH))
 SUBFOLDERSRC = .
 BASEPATHSRC = ./src/
@@ -38,14 +34,14 @@ PATHOBJ = build/obj/
 VPATH = $(PATHSRC) $(INCLUDEPATH)
 
 SRC = 	main.c \
-		process_main.c \
-		process_cmd1.c \
-		process_cmd2.c \
-		utils.c \
-		free.c \
-		exit.c \
-		handle_args.c \
-		print_pipex_data.c
+		check_input.c \
+		ft_atoi_secure_util.c \
+		ft_atoi_secure.c \
+		init_data_free.c \
+		init_data.c \
+		assign_forks_to_philos.c \
+		print_data.c
+		
 		
 OBJFNAME = $(SRC:.c=.o)
 OBJ = $(patsubst %,$(PATHOBJ)%,$(OBJFNAME))
@@ -54,21 +50,16 @@ OBJ = $(patsubst %,$(PATHOBJ)%,$(OBJFNAME))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PATHLIBFT)
-	$(LINK) $(CFLAGS) -o $(NAME) $(OBJ) $(PATHLIBFT)
+$(NAME): $(OBJ)
+	$(LINK) $(CFLAGS) -o $(NAME) $(OBJ) 
 
-$(PATHOBJ)%.o: %.c pipex.h
+$(PATHOBJ)%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(PATHLIBFT): 
-	make -C $(FOLDERLIBFT)
-
 clean:
-	make -C $(FOLDERLIBFT) clean
 	$(RM) $(OBJ)
 
 fclean: clean
-	make -C libft fclean
 	$(RM) $(NAME)
 
 re: fclean all

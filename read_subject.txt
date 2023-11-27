@@ -1,3 +1,6 @@
 - routine for philosophers -> eat, sleep, etc.
 - main that starts all the threads and supervises behaviour
+- dead flag, to indicate whether one philo died as exit condition
 - 
+
+- use hellgrind and fsanitize threads
