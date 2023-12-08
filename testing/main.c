@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:05:18 by smatthes          #+#    #+#             */
-/*   Updated: 2023/11/26 10:05:11 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:20:53 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,31 @@
 #define LIMIT 100000000
 #define NUMTHREADS 2
 
-void	*routine(void *)
+void	*routine(void *ptr)
 {
-	int			i;
-	pthread_t	t;
+	pthread_mutex_t	*mutex;
 
-	t = pthread_self();
-	i = 0;
-	while (i < LIMIT)
-	{
-		i++;
-	}
-	printf("Thread  ended %lu!\n", t);
+	mutex = ptr;
+	pthread_mutex_lock(mutex);
+	printf("locked\n");
+	usleep(2000000);
+	pthread_mutex_unlock(mutex);
 	return (NULL);
 }
 
 int	main(void)
 {
 	int				i;
-	pthread_t		th[NUMTHREADS];
 	pthread_mutex_t	mutex;
 
-	i = 0;
+	pthread_t thread1, thread2;
+	pthread_create(&thread1, NULL, routine, &mutex);
+	pthread_create(&thread2, NULL, routine, &mutex);
 	pthread_mutex_init(&mutex, NULL);
-	while (i < NUMTHREADS)
-	{
-		if (pthread_create(th + i, NULL, &routine, NULL) != 0)
-			return (1);
-		// pthread_detach(*(th + i));
-		printf("Thread %lu started!\n", th[i]);
-		i++;
-	}
 	i = 0;
-	// while (i < NUMTHREADS)
-	// {
-	// 	if (pthread_join(th[i], NULL) != 0)
-	// 		return (2);
-	// 	// printf("Thread %d ended!\n", i);
-	// 	i++;
-	// }
 	pthread_mutex_destroy(&mutex);
+	pthread_join(thread1, NULL);
+	pthread_join(thread2, NULL);
 	exit(1);
 }
 

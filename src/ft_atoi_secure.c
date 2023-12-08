@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 09:52:03 by smatthes          #+#    #+#             */
-/*   Updated: 2023/11/27 15:49:24 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:25:58 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 static int	ft_strlen_1_to_9(const char *int_str);
 static int	handle_to_many_dig(const char *nptr, int sign, long *res);
-static int	set_res_return_code(int *res, int num, int error_code);
+static int	set_res_return_code(long *res, int num, int error_code);
 
-int	ft_atoi_secure(const char *nptr, int *res)
+int	ft_atoi_secure_int(const char *nptr, int *res)
+{
+	long	res_l;
+	int		status;
+
+	status = ft_atoi_secure(nptr, &res_l);
+	*res = res_l;
+	return (status);
+}
+
+int	ft_atoi_secure(const char *nptr, long *res)
 {
 	int		sign;
 	long	res_help;
@@ -88,7 +98,7 @@ static int	ft_strlen_1_to_9(const char *int_str)
 	return (len);
 }
 
-static int	set_res_return_code(int *res, int num, int error_code)
+static int	set_res_return_code(long *res, int num, int error_code)
 {
 	*res = num;
 	return (error_code);

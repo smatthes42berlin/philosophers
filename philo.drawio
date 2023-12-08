@@ -1,0 +1,61 @@
+<mxfile host="Electron" modified="2023-12-07T19:59:23.583Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="iGqAXah7URBi3RMbgI8D" version="22.1.2" type="device">
+  <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
+    <mxGraphModel dx="714" dy="773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-2" value="Philo 1" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="370" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-3" value="Philo 2" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="510" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-4" value="Philo 3" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="410" y="370" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-5" value="main" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="320" y="160" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-6" value="bool someone died" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="255" y="200" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-7" value="int num philo eaten enough" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="355" y="200" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-9" value="fork 1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="450" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-10" value="fork 2" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="400" y="450" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-11" value="fork 3" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="360" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-12" value="eat" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="420" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-13" value="sleep" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="470" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-14" value="think" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="520" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-16" value="&lt;ul&gt;&lt;li&gt;always check, wheather one died or all have eaten enough times&lt;br&gt;&lt;/li&gt;&lt;li&gt;specify how often it should be checked in ms in Macro&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="690" y="425" width="280" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-17" value="fork lock 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="155" y="490" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-18" value="fork lock 2" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="425" y="490" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-19" value="fork lock 3" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="292.5" y="310" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5__OyzSIkyh-yFbwQ7-E-20" value="&lt;ul&gt;&lt;li&gt;even take left fork, odd take right fork first&lt;/li&gt;&lt;li&gt;take other fork&lt;/li&gt;&lt;li&gt;start to eat&lt;/li&gt;&lt;li&gt;finish eating&lt;/li&gt;&lt;li&gt;start to sleep&lt;/li&gt;&lt;li&gt;finish sleeping&lt;/li&gt;&lt;li&gt;start to think&lt;/li&gt;&lt;li&gt;try to take forks and eat again&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="75" width="280" height="125" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

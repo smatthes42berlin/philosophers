@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/11/27 17:12:14 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/08 14:13:03 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,15 @@ SRC = 	main.c \
 		check_input.c \
 		ft_atoi_secure_util.c \
 		ft_atoi_secure.c \
-		init_data_free.c \
+		free.c \
 		init_data.c \
 		assign_forks_to_philos.c \
-		print_data.c
+		print_data.c \
+		begin_simulation.c \
+		philo_routine.c \
+		mutex_creating_threads.c \
+		forks.c \
+		time.c
 		
 		
 OBJFNAME = $(SRC:.c=.o)
