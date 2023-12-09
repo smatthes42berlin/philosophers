@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/08 14:34:08 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:26:08 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	print_main_data(t_main_data *main_data)
 	printf("ref_time start sec = %ld\n", main_data->reference_time.tv_sec);
 	printf("ref_time start micro sec = %ld\n",
 			main_data->reference_time.tv_usec);
-	printf("someone_died = %d\n", main_data->someone_died);
 	printf("all_threads_created = %d\n", main_data->all_threads_created);
-	printf("error_during_sim = %d\n", main_data->error_during_sim);
 	printf("num_eaten_min_times = %d\n", main_data->num_eaten_min_times);
 	printf("\n***********************philos*********************\n");
 	i = 0;
@@ -51,6 +49,7 @@ void	print_philo(t_philo *philo)
 	printf("left fork = %d\n", philo->left_fork->id);
 	printf("right fork = %d\n", philo->right_fork->id);
 	printf("main_data = %p\n", philo->main_data);
+	printf("sim status = %d\n", philo->sim_status);
 }
 
 void	print_fork(t_fork *fork)
@@ -58,6 +57,4 @@ void	print_fork(t_fork *fork)
 	printf("id = %d\n", fork->id);
 	printf("on_table = %d\n", fork->on_table);
 	printf("init_sucessful = %d\n", fork->init_sucessful);
-	printf("left philo = %d\n", fork->left_philo->id);
-	printf("right philo = %d\n", fork->right_philo->id);
 }

@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   philo_check_death.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/09 13:09:56 by smatthes         ###   ########.fr       */
+/*   Created: 2023/12/09 11:05:10 by smatthes          #+#    #+#             */
+/*   Updated: 2023/12/09 11:18:05 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+BOOL	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&fork->mutex_in_use);
-	fork->on_table = FALSE;
+	LMICROSEC ref_time_stamp;
+	int status;
+
+	status = get_reference_time_stamp(philo->main_data, &ref_time_stamp);
+	if (status == ERROR)
+		return (set_sim_error(philo->main_data));
+	if (ref_time_stamp - philo->last_eat >= philo->main_data->time_to_die)
+		return (TRUE);
+	return (FALSE);
 }
-
-void	put_back_fork(t_fork *fork)
-{
-	fork->on_table = TRUE;
-	pthread_mutex_unlock(&fork->mutex_in_use);
-}
-
-// 
-
-void	take_fork(t_fork *fork)
-{
-	pthread_mutex_lock(&fork->mutex_in_use);
-	fork->on_table = FALSE;
-}
-
-void	put_back_fork(t_fork *fork)
-{
-	fork->on_table = TRUE;
-	pthread_mutex_unlock(&fork->mutex_in_use);
-}
-
-

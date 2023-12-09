@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/08 14:31:43 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:40:59 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,25 @@ int	begin_simulation(t_main_data *main_data)
 	}
 	if (set_sim_start_time_all(main_data) == -1)
 		return (error_creating_threads(main_data, main_data->num_philo));
-	// set simulation start here
-	// printf("micro sec: %ld\n", time.tv_usec);
 	write_creating_threads_status(main_data, 1);
-	usleep(2000000);
+	i = 0;
+	status = read_sim_status_main(main_data);
+	while (status == RUNNING)
+		status = read_sim_status_main(main_data);
+	i = 0;
+	while (i < main_data->num_philo)
+	{
+		printf("checking\n");
+		write_sim_status_philo(main_data->philos + i, status);
+		i++;
+	}
 	i = 0;
 	while (i < main_data->num_philo)
 	{
 		pthread_join(main_data->philo_threads[i], NULL);
 		i++;
 	}
-	// wait for exit condition to occur
-	// join threads
-	print_main_data(main_data);
+	// print_main_data(main_data);
 	return (free_all_data(main_data, 0));
 }
 

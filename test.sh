@@ -6,15 +6,15 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 15:02:54 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/07 17:24:51 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/09 13:03:27 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 clear
 
 
-number_philo=3
-time_to_die=400
+number_philo=2
+time_to_die=1000
 time_to_eat=100
 time_to_sleep=100
 number_min_eat=

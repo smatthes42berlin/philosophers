@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/08 14:13:03 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/09 12:10:54 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,10 @@ SRC = 	main.c \
 		philo_routine.c \
 		mutex_creating_threads.c \
 		forks.c \
-		time.c
+		time.c \
+		mutex_sim_status.c \
+		error.c \
+		philo_check_death.c
 		
 		
 OBJFNAME = $(SRC:.c=.o)
