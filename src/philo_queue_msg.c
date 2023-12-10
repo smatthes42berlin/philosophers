@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   philo_queue_msg.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 12:02:41 by smatthes         ###   ########.fr       */
+/*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
+/*   Updated: 2023/12/10 20:43:00 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+int	philo_queue_msg(t_philo *philo, int msg_type)
 {
-	write_fork_on_table(fork, FALSE);
-	pthread_mutex_lock(&fork->mutex_in_use);
-}
+	t_message	msg;
 
-void	put_back_fork(t_fork *fork)
-{
-	write_fork_on_table(fork, TRUE);
-	pthread_mutex_unlock(&fork->mutex_in_use);
+	if (get_time_stamp_ms(philo->main_data, &msg.timestamp) == ERROR)
+		return (ERROR);
+	msg.philo_id = philo->id;
+	msg.msg_type = msg_type;
+	enqueue(philo->main_data->collect_msg_queue, msg);
+	return (1);
 }

@@ -5,6 +5,10 @@
         "titleBar.activeForeground": "#FAFBFA"
     },
     "files.associations": {
-        "limits.h": "c"
+        "limits.h": "c",
+        "array": "c",
+        "deque": "c",
+        "vector": "c",
+        "string_view": "c"
     }
 }

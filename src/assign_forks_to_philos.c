@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:42 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/09 12:26:50 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:13:13 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	assign_forks_to_philos(t_main_data *main_data)
 	}
 	main_data->philos[0].left_fork = &(main_data->forks[0]);
 	main_data->philos[0].right_fork = &(main_data->forks[index_last_philo]);
+	main_data->philos[0].fork_first = main_data->philos[0].left_fork;
+	main_data->philos[0].fork_second = main_data->philos[0].right_fork;
 	while (i < main_data->num_philo)
 	{
 		main_data->philos[i].left_fork = &(main_data->forks[i]);

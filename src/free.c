@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:42 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/09 09:55:12 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:57:55 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,15 @@ int	free_code_forks(t_main_data *main_data, int code)
 	int	i;
 
 	i = 0;
-	while (main_data->forks[i].init_sucessful == TRUE)
+	while (main_data->forks[i].init_sucess_table == TRUE)
 	{
-		pthread_mutex_destroy(&(main_data->forks[i].mutex));
+		pthread_mutex_destroy(&(main_data->forks[i].mutex_on_table));
+		i++;
+	}
+	i = 0;
+	while (main_data->forks[i].init_sucess_use == TRUE)
+	{
+		pthread_mutex_destroy(&(main_data->forks[i].mutex_in_use));
 		i++;
 	}
 	free(main_data->forks);

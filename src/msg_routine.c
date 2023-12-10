@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   msg_routine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 12:02:41 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:05:27 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+void	*msg_routine(void *data)
 {
-	write_fork_on_table(fork, FALSE);
-	pthread_mutex_lock(&fork->mutex_in_use);
-}
+	t_main_data *main_data;
 
-void	put_back_fork(t_fork *fork)
-{
-	write_fork_on_table(fork, TRUE);
-	pthread_mutex_unlock(&fork->mutex_in_use);
+	main_data = data;
+
+	while (main_data->msg_status == RUNNING)
+	{
+		print_msg_queue(main_data, main_data->print_msg_queue);
+		swap_queues(main_data);
+		usleep(1000);
+	}
+	return (NULL);
 }

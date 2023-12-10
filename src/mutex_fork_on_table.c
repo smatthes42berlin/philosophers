@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   mutex_fork_on_table.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 12:02:41 by smatthes         ###   ########.fr       */
+/*   Created: 2023/12/09 09:36:10 by smatthes          #+#    #+#             */
+/*   Updated: 2023/12/10 12:03:32 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+void	write_fork_on_table(t_fork *fork, BOOL val)
 {
-	write_fork_on_table(fork, FALSE);
-	pthread_mutex_lock(&fork->mutex_in_use);
+	pthread_mutex_lock(&fork->mutex_on_table);
+	fork->on_table = val;
+	pthread_mutex_unlock(&fork->mutex_on_table);
 }
 
-void	put_back_fork(t_fork *fork)
+BOOL	read_fork_on_table(t_fork *fork)
 {
-	write_fork_on_table(fork, TRUE);
-	pthread_mutex_unlock(&fork->mutex_in_use);
+	int	val;
+
+	pthread_mutex_lock(&fork->mutex_on_table);
+	val = fork->on_table;
+	pthread_mutex_unlock(&fork->mutex_on_table);
+	return (val);
 }

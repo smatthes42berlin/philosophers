@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/09 12:26:08 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:12:42 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ void	print_main_data(t_main_data *main_data)
 	printf("time_to_eat = %ld\n", main_data->time_to_eat);
 	printf("time_to_sleep = %ld\n", main_data->time_to_sleep);
 	printf("min_times_eat = %d\n", main_data->min_times_eat);
-	printf("sim_start = %ld\n", main_data->sim_start);
-	printf("ref_time start sec = %ld\n", main_data->reference_time.tv_sec);
-	printf("ref_time start micro sec = %ld\n",
-			main_data->reference_time.tv_usec);
+	printf("sim start start sec = %ld\n", main_data->sim_start.tv_sec);
+	printf("sim start start micro sec = %ld\n",
+			main_data->sim_start.tv_usec);
 	printf("all_threads_created = %d\n", main_data->all_threads_created);
 	printf("num_eaten_min_times = %d\n", main_data->num_eaten_min_times);
 	printf("\n***********************philos*********************\n");
@@ -48,6 +47,8 @@ void	print_philo(t_philo *philo)
 	printf("last eat = %ld\n", philo->last_eat);
 	printf("left fork = %d\n", philo->left_fork->id);
 	printf("right fork = %d\n", philo->right_fork->id);
+	printf("fork first = %d\n", philo->fork_first->id);
+	printf("fork second = %d\n", philo->fork_second->id);
 	printf("main_data = %p\n", philo->main_data);
 	printf("sim status = %d\n", philo->sim_status);
 }
@@ -56,5 +57,6 @@ void	print_fork(t_fork *fork)
 {
 	printf("id = %d\n", fork->id);
 	printf("on_table = %d\n", fork->on_table);
-	printf("init_sucessful = %d\n", fork->init_sucessful);
+	printf("init_sucess_table = %d\n", fork->init_sucess_table);
+	printf("init_sucess_use = %d\n", fork->init_sucess_use);
 }

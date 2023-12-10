@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/09 12:10:54 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/10 20:26:54 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,14 @@ SRC = 	main.c \
 		time.c \
 		mutex_sim_status.c \
 		error.c \
-		philo_check_death.c
+		philo_check_death.c \
+		mutex_fork_on_table.c \
+		msg_queue_print.c \
+		msg_queue.c \
+		philo_queue_msg.c \
+		msg_routine.c \
+		philo_monitor_routine.c  
+
 		
 		
 OBJFNAME = $(SRC:.c=.o)

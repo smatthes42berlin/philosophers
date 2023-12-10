@@ -4,3 +4,9 @@
 - 
 
 - use hellgrind and fsanitize threads
+
+- let everyone finish their routine
+- just dont print any more messages, if status is dead -> check if status is dead before printing
+
+- unlock all mutexes in the end in main when one philo dies, so no other philo will be stuck somehwhere
+ 
