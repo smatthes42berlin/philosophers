@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   msg_queue_setup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 11:09:38 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 08:54:19 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+int	init_queue(t_message_queue *msg_queue)
 {
-	write_fork_on_table(fork, FALSE);
-	pthread_mutex_lock(&fork->mutex_in_use);
+	reset_queue(msg_queue);
+	if (pthread_mutex_init(&msg_queue->mutex, NULL) == -1)
+		return (ERROR);
+	return (1);
 }
 
-void	put_back_fork(t_fork *fork)
+int	destroy_queue(t_message_queue *msg_queue)
 {
-	write_fork_on_table(fork, TRUE);
-	pthread_mutex_unlock(&fork->mutex_in_use);
+	reset_queue(msg_queue);
+	if (pthread_mutex_destroy(&(msg_queue->mutex)) != 0)
+		return (ERROR);
+	return (1);
+}
+
+void	reset_queue(t_message_queue *msg_queue)
+{
+	msg_queue->front = 0;
+	msg_queue->rear = -1;
+	msg_queue->count = 0;
 }

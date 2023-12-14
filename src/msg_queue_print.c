@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 21:27:05 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:53:38 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	print_msg_queue(t_main_data *main_data, t_message_queue *msg_queue)
 
 	i = 0;
 	pthread_mutex_lock(&msg_queue->mutex);
-	// if (!main_data->stop_printing)
-	if (TRUE)
+	if (!main_data->stop_printing)
 	{
 		while (i < msg_queue->count)
 		{

@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msg_queue.c                                        :+:      :+:    :+:   */
+/*   msg_queue_actions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 18:18:32 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:03:55 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	init_queue(t_message_queue *msg_queue)
-{
-	reset_queue(msg_queue);
-	if (pthread_mutex_init(&msg_queue->mutex, NULL) == -1)
-		return (ERROR);
-	return (1);
-}
-
-void	reset_queue(t_message_queue *msg_queue)
-{
-	msg_queue->front = 0;
-	msg_queue->rear = -1;
-	msg_queue->count = 0;
-}
 
 void	enqueue(t_message_queue *msg_queue, t_message msg)
 {
@@ -63,6 +48,6 @@ void	swap_queues(t_main_data *main_data)
 	tmp = main_data->print_msg_queue;
 	main_data->print_msg_queue = main_data->collect_msg_queue;
 	main_data->collect_msg_queue = tmp;
-	pthread_mutex_unlock(&main_data->collect_msg_queue->mutex);
 	pthread_mutex_unlock(&main_data->print_msg_queue->mutex);
+	pthread_mutex_unlock(&main_data->collect_msg_queue->mutex);
 }

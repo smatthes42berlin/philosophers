@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 14:12:42 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:15:04 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,5 @@ void	print_philo(t_philo *philo)
 void	print_fork(t_fork *fork)
 {
 	printf("id = %d\n", fork->id);
-	printf("on_table = %d\n", fork->on_table);
-	printf("init_sucess_table = %d\n", fork->init_sucess_table);
-	printf("init_sucess_use = %d\n", fork->init_sucess_use);
+	printf("on table = %d\n", fork->on_table);
 }

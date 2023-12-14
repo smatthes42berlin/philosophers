@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:42 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/08 14:25:24 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:36:22 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_input(int argc, char *argv[], t_main_data *main_data)
 	if (argc == 6)
 	{
 		status = ft_atoi_secure_int(argv[5], &(main_data->min_times_eat));
-		if (main_data->min_times_eat < 0 || status == -1)
+		if (main_data->min_times_eat < 1 || status == -1)
 			return (print_error_message_code("min times eat range error", -1));
 	}
 	else

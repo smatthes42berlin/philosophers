@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   await_thread_creation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 11:09:38 by smatthes         ###   ########.fr       */
+/*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
+/*   Updated: 2023/12/14 10:50:09 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_fork(t_fork *fork)
+int	ensure_all_threads_created(t_main_data *main_data)
 {
-	write_fork_on_table(fork, FALSE);
-	pthread_mutex_lock(&fork->mutex_in_use);
-}
+	int	thread_creation_status;
 
-void	put_back_fork(t_fork *fork)
-{
-	write_fork_on_table(fork, TRUE);
-	pthread_mutex_unlock(&fork->mutex_in_use);
+	thread_creation_status = 0;
+	while (thread_creation_status == 0)
+		thread_creation_status = read_creating_threads_status(main_data);
+	if (thread_creation_status == -1)
+		return (ERROR);
+	return (0);
 }

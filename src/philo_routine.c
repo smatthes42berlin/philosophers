@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 21:16:16 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:11:00 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	*philo_routine(void *data)
 	t_philo	*philo;
 
 	philo = data;
-	if (ensure_all_threads_created(philo) == ERROR)
+	if (ensure_all_threads_created(philo->main_data) == ERROR)
 		return (NULL);
 	while (read_sim_status_philo(philo) == RUNNING)
 	{
 		take_forks(philo);
 		eat(philo);
+		put_back_forks(philo);
 		if (read_sim_status_philo(philo) != RUNNING)
 			return (NULL);
-		put_back_forks(philo);
 		philo_sleep(philo);
 		if (read_sim_status_philo(philo) != RUNNING)
 			return (NULL);
@@ -58,7 +58,6 @@ int	eat(t_philo *philo)
 		return (set_sim_error_philo(philo));
 	philo->times_eaten++;
 	philo_queue_msg(philo, EATING);
-	// here: check if min times eaten is reached and than incremtn monitor variable
 	if (ft_sleep(philo, philo->main_data->time_to_eat) == ERROR)
 		return (set_sim_error_philo(philo));
 	return (TRUE);
@@ -82,7 +81,7 @@ int	philo_sleep(t_philo *philo)
 int	think(t_philo *philo)
 {
 	philo_queue_msg(philo, THINKING);
-	usleep(philo->main_data->time_to_think - 10000);
+	usleep(philo->main_data->time_to_think);
 	return (TRUE);
 }
 
@@ -91,16 +90,4 @@ int	ft_sleep(t_philo *philo, LMICROSEC duration)
 	if (usleep(duration) == -1)
 		return (set_sim_error_philo(philo));
 	return (1);
-}
-
-int	ensure_all_threads_created(t_philo *philo_data)
-{
-	int	thread_creation_status;
-
-	thread_creation_status = 0;
-	while (thread_creation_status == 0)
-		thread_creation_status = read_creating_threads_status(philo_data->main_data);
-	if (thread_creation_status == -1)
-		return (-1);
-	return (0);
 }

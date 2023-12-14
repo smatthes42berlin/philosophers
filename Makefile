@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/10 20:26:54 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/14 20:09:27 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 
 # -I Flag adds path where header files are searched during preprocessing
 SHELL:=/bin/bash
-CFLAGS = -Wall -Wextra -Werror $(INCLUDEFLAGS) 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread $(INCLUDEFLAGS) 
 NAME = philo
 LINK= cc
 CC = cc
@@ -37,27 +37,31 @@ SRC = 	main.c \
 		check_input.c \
 		ft_atoi_secure_util.c \
 		ft_atoi_secure.c \
+		init_main_data.c \
+		init_philo_data.c \
+		init_fork_data.c \
 		free.c \
-		init_data.c \
 		assign_forks_to_philos.c \
+		msg_queue_print.c \
+		msg_queue_init.c \
+		msg_queue_actions.c \
 		print_data.c \
 		begin_simulation.c \
 		philo_routine.c \
-		mutex_creating_threads.c \
+		philo_monitor_routine.c \
+		msg_routine.c \
+		eat_count_routine.c \
 		forks.c \
 		time.c \
-		mutex_sim_status.c \
+		getset_sim_status.c \
+		getset_fork_on_table.c \
+		getset_creating_threads.c \
+		getset_min_times_eat.c \
 		error.c \
 		philo_check_death.c \
-		mutex_fork_on_table.c \
-		msg_queue_print.c \
-		msg_queue.c \
 		philo_queue_msg.c \
-		msg_routine.c \
-		philo_monitor_routine.c  
+		ensure_all_threads_created.c
 
-		
-		
 OBJFNAME = $(SRC:.c=.o)
 OBJ = $(patsubst %,$(PATHOBJ)%,$(OBJFNAME))
 

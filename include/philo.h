@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 10:38:48 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/10 21:14:11 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:19:54 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,15 @@ typedef struct s_philo
 	t_main_data				*main_data;
 	int						sim_status;
 	pthread_mutex_t			sim_status_mutex;
-	BOOL					init_sucessful;
+	pthread_mutex_t			times_eaten_mutex;
 }							t_philo;
 
 typedef struct s_fork
 {
 	int						id;
 	BOOL					on_table;
-	BOOL					init_sucess_table;
-	BOOL					init_sucess_use;
-	pthread_mutex_t			mutex_in_use;
 	pthread_mutex_t			mutex_on_table;
+	pthread_mutex_t			mutex_in_use;
 }							t_fork;
 
 typedef struct s_main_data
@@ -118,7 +116,9 @@ typedef struct s_main_data
 	t_philo					*philos;
 	pthread_t				*philo_threads;
 	pthread_t				*philo_monitor_threads;
-	pthread_t				printer_threads;
+	pthread_t				printer_thread;
+	pthread_t				times_eaten_thread;
+	pthread_t				eat_count_thread;
 }							t_main_data;
 
 /* input checking */
@@ -133,34 +133,50 @@ void						print_philo(t_philo *philo);
 void						print_fork(t_fork *fork);
 
 /* init data */
+
 int							init_main_data(t_main_data *main_data);
 int							init_philo_data(t_main_data *main_data);
 int							init_fork_data(t_main_data *main_data);
 void						assign_forks_to_philos(t_main_data *main_data);
-void						take_right_fork_first(t_philo *philo);
-void						take_left_fork_first(t_philo *philo);
 
 /* free data */
-int							free_code_philos(t_main_data *main_data, int code);
-int							free_all_data(t_main_data *main_data, int code);
-int	free_code_main_data(t_main_data *main_data,
-						int code);
-int	error_creating_threads(t_main_data *main_data,
-							int num_philo_thread,
-							int num_monitoring_thread);
-int	free_code_forks(t_main_data *main_data,
+
+int							free_main_data(t_main_data *main_data, int which,
+								int code);
+int	free_philo_data(t_main_data *main_data,
+					int num_mutex_1,
+					int num_mutex_2,
 					int code);
+int	free_fork_data(t_main_data *main_data,
+					int num_mutex_1,
+					int num_mutex_2,
+					int code);
+int							free_all_data(t_main_data *main_data, int code);
+int							free_err_forks(t_main_data *main_data, int code);
+
+/* main simulation supervisor */
+
+int							begin_simulation(t_main_data *main_data);
+int							ensure_all_threads_created(t_main_data *main_data);
+
+/* msg routine */
+
+int							philo_queue_msg(t_philo *philo, int msg_type);
+void						*msg_routine(void *data);
+
+/* eat count routine */
+
+void						*eat_count_routine(void *data);
 
 /* philo routine */
 void						*philo_routine(void *data);
 int							begin_simulation(t_main_data *main_data);
 void						take_fork(t_fork *fork);
 void						put_back_fork(t_fork *fork);
-int							ensure_all_threads_created(t_philo *philo_data);
-int							get_time_stamp_ms(t_main_data *main_data,
-								LMICROSEC *ref_time_stamp);
-int							get_time_stamp_us(t_main_data *main_data,
-								LMICROSEC *ref_time_stamp);
+int	get_time_stamp_ms(t_main_data *main_data,
+						LMICROSEC *ref_time_stamp);
+int	get_time_stamp_us(t_main_data *main_data,
+						LMICROSEC *ref_time_stamp);
 int							check_death(t_philo *philo);
 int							set_sim_error(t_main_data *main_data);
 int							set_sim_error_philo(t_philo *philo);
@@ -174,7 +190,7 @@ BOOL						do_exit_death_error(t_philo *philo);
 int							print_message(t_philo *philo, int action);
 void						*philo_monitor_routine(void *data);
 
-/* mutexed access functions */
+/* getters setters */
 void	write_creating_threads_status(t_main_data *main_data,
 									BOOL val);
 BOOL						read_creating_threads_status(t_main_data *main_data);
@@ -185,8 +201,11 @@ void	write_sim_status_main(t_main_data *main_data,
 int							read_sim_status_main(t_main_data *main_data);
 void						write_fork_on_table(t_fork *fork, BOOL val);
 BOOL						read_fork_on_table(t_fork *fork);
+void						write_min_eat_main(t_main_data *main_data, int val);
+int							read_min_eat_main(t_main_data *main_data);
+void						increment_min_eat_main(t_main_data *main_data);
 
-/* messaging */
+/* msg queue */
 
 int							init_queue(t_message_queue *msg_queue);
 void						reset_queue(t_message_queue *msg_queue);
@@ -195,7 +214,6 @@ t_message					dequeue(t_message_queue *msg_queue);
 void						swap_queues(t_main_data *main_data);
 void	print_msg_queue(t_main_data *main_data,
 						t_message_queue *msg_queue);
-int							philo_queue_msg(t_philo *philo, int msg_type);
-void						*msg_routine(void *data);
+int							destroy_queue(t_message_queue *msg_queue);
 
 #endif
