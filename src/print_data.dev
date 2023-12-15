@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 11:15:04 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/15 09:42:52 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	print_main_data(t_main_data *main_data)
 void	print_philo(t_philo *philo)
 {
 	printf("id = %d\n", philo->id);
-	printf("threadid = %ld\n", philo->thread_id);
 	printf("times eaten = %d\n", philo->times_eaten);
 	printf("last eat = %ld\n", philo->last_eat);
 	printf("left fork = %d\n", philo->left_fork->id);

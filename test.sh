@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 15:02:54 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/14 20:09:42 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/15 15:55:37 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ time_to_eat=100
 time_to_sleep=100
 number_min_eat=
 
-make 
+make re
 clear
 
 
@@ -42,10 +42,13 @@ clear
 # ./philo 5 800 200 200 7
 
 # noone should die
-# ./philo 4 410 200 200
+# valgrind --tool=helgrind ./philo 2 310 200 60
+
+# guy on slack inly lost 9ms here (1000 philo 210 100 100) (10009)
+# ./philo 200 600 100 100
 
 # one should die
-# ./philo 4 310 200 100
+# ./philo 50 600 200 100
 
 # 2 philo and check with different times, max dceath delay 10ms
-valgrind ./philo 4 610 200 100
+# valgrind ./philo 4 610 200 100

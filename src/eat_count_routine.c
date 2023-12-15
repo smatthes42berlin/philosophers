@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 19:47:59 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:41:27 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*eat_count_routine(void *data)
 
 static BOOL	check_eat_count_reached(t_main_data *main_data)
 {
-	int eat_count;
+	int	eat_count;
 
 	eat_count = read_min_eat_main(main_data);
 	if (eat_count >= main_data->num_philo)

@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:10 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:39:09 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*philo_monitor_routine(void *data)
 
 static void	check_eaten_enough(t_philo *philo, BOOL *eaten_enough)
 {
-	if (philo->times_eaten >= philo->main_data->min_times_eat)
+	if (read_min_eat_philo(philo) >= philo->main_data->min_times_eat)
 	{
 		increment_min_eat_main(philo->main_data);
 		*eaten_enough = TRUE;

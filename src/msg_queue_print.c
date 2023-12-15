@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/14 19:53:38 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:42:29 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static const char	*get_msg(int msg_type);
 static void			print_eaten_enough(t_main_data *main_data);
 static void			print_msg(t_message cur_message);
-static BOOL	check_stop_printing(t_main_data *main_data,
-								t_message cur_message);
+static BOOL			check_stop_printing(t_main_data *main_data,
+						t_message cur_message);
 
 void	print_msg_queue(t_main_data *main_data, t_message_queue *msg_queue)
 {
@@ -24,7 +24,7 @@ void	print_msg_queue(t_main_data *main_data, t_message_queue *msg_queue)
 	t_message	cur_message;
 
 	i = 0;
-	pthread_mutex_lock(&msg_queue->mutex);
+	pthread_mutex_lock(&main_data->print_msg_queue_mutex);
 	if (!main_data->stop_printing)
 	{
 		while (i < msg_queue->count)
@@ -41,7 +41,7 @@ void	print_msg_queue(t_main_data *main_data, t_message_queue *msg_queue)
 		}
 	}
 	reset_queue(msg_queue);
-	pthread_mutex_unlock(&msg_queue->mutex);
+	pthread_mutex_unlock(&main_data->print_msg_queue_mutex);
 }
 
 static BOOL	check_stop_printing(t_main_data *main_data, t_message cur_message)
@@ -57,13 +57,13 @@ static BOOL	check_stop_printing(t_main_data *main_data, t_message cur_message)
 static void	print_msg(t_message cur_message)
 {
 	printf("%ld %d %s\n", cur_message.timestamp, cur_message.philo_id,
-			get_msg(cur_message.msg_type));
+		get_msg(cur_message.msg_type));
 }
 
 static void	print_eaten_enough(t_main_data *main_data)
 {
 	printf("all philosophers have eaten at least %d-times\n",
-			main_data->min_times_eat);
+		main_data->min_times_eat);
 }
 
 static const char	*get_msg(int msg_type)

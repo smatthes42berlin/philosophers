@@ -6,12 +6,11 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 09:52:03 by smatthes          #+#    #+#             */
-/*   Updated: 2023/11/27 15:48:40 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:43:19 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 int	ft_isdigit(int c)
 {
@@ -30,4 +29,3 @@ int	ft_isspace(char c)
 		return (1);
 	return (0);
 }
-
