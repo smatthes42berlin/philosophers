@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 08:18:37 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 11:55:07 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:02:19 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 // 	return (1);
 // }
 
-int	ft_sleep(t_philo *philo, LMICROSEC duration)
+int	ft_sleep(t_main_data *main_data, LMICROSEC duration)
 {
 	LMICROSEC	start_time;
 	LMICROSEC	cur_time;
 
-	if (get_time_stamp_us(philo->main_data, &start_time))
+	if (get_time_stamp_us(main_data, &start_time))
 		return (ERROR);
-	get_time_stamp_us(philo->main_data, &cur_time);
+	get_time_stamp_us(main_data, &cur_time);
 	while (cur_time < start_time + duration)
 	{
 		usleep(100);
-		get_time_stamp_us(philo->main_data, &cur_time);
+		get_time_stamp_us(main_data, &cur_time);
 	}
 	return (1);
 }

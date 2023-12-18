@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 10:38:48 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 16:46:20 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:02:37 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_philo
 	int						id;
 	int						times_eaten;
 	LMICROSEC				last_eat;
+	BOOL					eaten_enough;
 	t_fork					*left_fork;
 	t_fork					*right_fork;
 	t_fork					*fork_first;
@@ -112,7 +113,7 @@ typedef struct s_main_data
 	t_fork					*forks;
 	t_philo					*philos;
 	pthread_t				*philo_threads;
-	pthread_t				*philo_monitor_threads;
+	pthread_t				philo_monitor_thread;
 	pthread_t				printer_thread;
 	pthread_t				eat_count_thread;
 }							t_main_data;
@@ -174,18 +175,16 @@ int							think(t_philo *philo);
 int							philo_sleep(t_philo *philo);
 int							eat(t_philo *philo);
 int							take_forks(t_philo *philo);
-int							ft_sleep(t_philo *philo, LMICROSEC duration);
+int							ft_sleep(t_main_data *main_data,
+								LMICROSEC duration);
 BOOL						do_exit_death_error(t_philo *philo);
 int							print_message(t_philo *philo, int action);
 void						*philo_monitor_routine(void *data);
-int							ft_usleep(t_main_data *main_data,
-								LMICROSEC duration);
 
 /* getters setters */
-void						write_creating_threads_status(
-								t_main_data *main_data, BOOL val);
-BOOL						read_creating_threads_status(
-								t_main_data *main_data);
+void						write_creating_threads_status(t_main_data *main_data,
+								BOOL val);
+BOOL						read_creating_threads_status(t_main_data *main_data);
 void						write_sim_status_philo(t_philo *philo, int val);
 int							read_sim_status_philo(t_philo *philo);
 void						write_sim_status_main(t_main_data *main_data,

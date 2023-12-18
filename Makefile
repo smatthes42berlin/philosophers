@@ -6,7 +6,7 @@
 #    By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:58:39 by smatthes          #+#    #+#              #
-#    Updated: 2023/12/15 16:39:49 by smatthes         ###   ########.fr        #
+#    Updated: 2023/12/18 13:54:46 by smatthes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@
 SHELL:=/bin/bash
 CFLAGS = -Wall -Wextra -Werror $(INCLUDEFLAGS) 
 SANITTHREAD=-fsanitize=thread
-SANITTHREADMOREOPTIONS=TSAN_OPTIONS=second_deadlock_stack=1
 NAME = philo
 LINK= cc
 CC = cc

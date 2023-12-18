@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:13:40 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/18 11:32:40 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:12:40 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_message	dequeue(t_message_queue *msg_queue)
 
 	msg.msg_type = -1;
 	msg.philo_id = -1;
-	msg.timestamp = -1;
+	msg.timestamp = 0;
 	if (msg_queue->count > 0)
 	{
 		msg = msg_queue->messages[msg_queue->front];

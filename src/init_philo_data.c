@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:42 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 16:43:04 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:19:57 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	init_philo_data(t_main_data *main_data)
 		return (ERROR);
 	while (i < main_data->num_philo)
 	{
-		main_data->philos[i].id = i;
+		main_data->philos[i].id = i + 1;
 		main_data->philos[i].times_eaten = 0;
 		main_data->philos[i].last_eat = 0;
+		main_data->philos[i].eaten_enough = FALSE;
 		main_data->philos[i].sim_status = RUNNING;
 		main_data->philos[i].main_data = main_data;
 		if (pthread_mutex_init(&(main_data->philos[i].sim_status_mutex),
