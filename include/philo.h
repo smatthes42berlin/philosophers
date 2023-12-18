@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 10:38:48 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 16:46:20 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:19:41 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_philo
 	int						id;
 	int						times_eaten;
 	LMICROSEC				last_eat;
+	BOOL					eaten_enough;
 	t_fork					*left_fork;
 	t_fork					*right_fork;
 	t_fork					*fork_first;
@@ -112,7 +113,7 @@ typedef struct s_main_data
 	t_fork					*forks;
 	t_philo					*philos;
 	pthread_t				*philo_threads;
-	pthread_t				*philo_monitor_threads;
+	pthread_t				philo_monitor_thread;
 	pthread_t				printer_thread;
 	pthread_t				eat_count_thread;
 }							t_main_data;
@@ -182,10 +183,9 @@ int							ft_usleep(t_main_data *main_data,
 								LMICROSEC duration);
 
 /* getters setters */
-void						write_creating_threads_status(
-								t_main_data *main_data, BOOL val);
-BOOL						read_creating_threads_status(
-								t_main_data *main_data);
+void						write_creating_threads_status(t_main_data *main_data,
+								BOOL val);
+BOOL						read_creating_threads_status(t_main_data *main_data);
 void						write_sim_status_philo(t_philo *philo, int val);
 int							read_sim_status_philo(t_philo *philo);
 void						write_sim_status_main(t_main_data *main_data,

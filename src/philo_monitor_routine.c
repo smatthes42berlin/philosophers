@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 16:39:09 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:27:23 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@ static void	check_eaten_enough(t_philo *philo, BOOL *eaten_enough);
 
 void	*philo_monitor_routine(void *data)
 {
-	t_philo	*philo;
-	int		eaten_enough;
+	t_main_data	*main_data;
+	int			eaten_enough;
+	int			i;
 
-	philo = data;
-	eaten_enough = FALSE;
-	if (ensure_all_threads_created(philo->main_data) == ERROR)
+	main_data = data;
+	i = 0;
+	if (ensure_all_threads_created(main_data) == ERROR)
 		return (NULL);
-	while (read_sim_status_philo(philo) == RUNNING)
+	while (read_sim_status_main(main_data) == RUNNING)
 	{
-		check_death(philo);
-		if (philo->main_data->min_times_eat >= 0 && !eaten_enough)
+		while (i < main_data->num_philo)
 		{
-			check_eaten_enough(philo, &eaten_enough);
+			check_death(main_data->philos + i);
+			if (main_data->min_times_eat >= 0
+				&& !main_data->philos[i].eaten_enough)
+			{
+				check_eaten_enough(main_data->philos + i, &eaten_enough);
+			}
 		}
-		usleep(1000);
 	}
 	return (NULL);
 }
