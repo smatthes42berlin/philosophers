@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:42 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/15 08:38:31 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:29:41 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	assign_forks_to_philos(t_main_data *main_data)
 	{
 		main_data->philos[i].left_fork = &(main_data->forks[i]);
 		main_data->philos[i].right_fork = &(main_data->forks[i - 1]);
-		if (i % 2 == 0)
+		if ((i + 1) % 2 == 0)
 			take_left_fork_first(&(main_data->philos[i]));
 		else
 			take_right_fork_first(&(main_data->philos[i]));
@@ -42,8 +42,8 @@ static void	assign_forks_first_philo(t_main_data *main_data)
 	main_data->philos[0].left_fork = &(main_data->forks[0]);
 	main_data->philos[0].right_fork = &(main_data->forks[main_data->num_philo
 			- 1]);
-	main_data->philos[0].fork_first = main_data->philos[0].left_fork;
-	main_data->philos[0].fork_second = main_data->philos[0].right_fork;
+	main_data->philos[0].fork_second = main_data->philos[0].left_fork;
+	main_data->philos[0].fork_first = main_data->philos[0].right_fork;
 }
 
 static void	assign_same_fork_twice(t_main_data *main_data)

@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/18 10:59:03 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:32:06 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	eat(t_philo *philo)
 		return (set_sim_error_philo(philo));
 	increment_min_eat_philo(philo);
 	philo_queue_msg(philo, EATING);
-	if (ft_sleep(philo, philo->main_data->time_to_eat) == ERROR)
+	if (ft_sleep(philo->main_data, philo->main_data->time_to_eat) == ERROR)
 		return (set_sim_error_philo(philo));
 	return (TRUE);
 }
@@ -47,7 +47,7 @@ int	put_back_forks(t_philo *philo)
 int	philo_sleep(t_philo *philo)
 {
 	philo_queue_msg(philo, SLEEPING);
-	if (ft_sleep(philo, philo->main_data->time_to_sleep) == ERROR)
+	if (ft_sleep(philo->main_data, philo->main_data->time_to_sleep) == ERROR)
 		return (set_sim_error_philo(philo));
 	return (TRUE);
 }
@@ -55,7 +55,8 @@ int	philo_sleep(t_philo *philo)
 int	think(t_philo *philo)
 {
 	philo_queue_msg(philo, THINKING);
-	if (philo->main_data->time_to_think > 0 && ft_sleep(philo, philo->main_data->time_to_think) == ERROR)
+	if (philo->main_data->time_to_think > 0 && ft_sleep(philo->main_data,
+			philo->main_data->time_to_think) == ERROR)
 		return (set_sim_error_philo(philo));
 	return (TRUE);
 }

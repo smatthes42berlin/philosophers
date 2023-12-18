@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 10:38:48 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/18 11:19:41 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:02:37 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,11 @@ int							think(t_philo *philo);
 int							philo_sleep(t_philo *philo);
 int							eat(t_philo *philo);
 int							take_forks(t_philo *philo);
-int							ft_sleep(t_philo *philo, LMICROSEC duration);
+int							ft_sleep(t_main_data *main_data,
+								LMICROSEC duration);
 BOOL						do_exit_death_error(t_philo *philo);
 int							print_message(t_philo *philo, int action);
 void						*philo_monitor_routine(void *data);
-int							ft_usleep(t_main_data *main_data,
-								LMICROSEC duration);
 
 /* getters setters */
 void						write_creating_threads_status(t_main_data *main_data,

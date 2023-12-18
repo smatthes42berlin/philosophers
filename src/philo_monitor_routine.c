@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:51 by smatthes          #+#    #+#             */
-/*   Updated: 2023/12/18 11:27:23 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:49:06 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	*philo_monitor_routine(void *data)
 			{
 				check_eaten_enough(main_data->philos + i, &eaten_enough);
 			}
+			i++;
+			ft_sleep(main_data, 500);
 		}
+		i = 0;
 	}
 	return (NULL);
 }
